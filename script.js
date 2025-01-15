@@ -3,6 +3,8 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const pixelSizeInput = document.getElementById('pixelSize');
 const greyscaleInput = document.getElementById('greyscale');
+const maxWidthInput = document.getElementById('maxWidth');
+const maxHeightInput = document.getElementById('maxHeight');
 const downloadButton = document.getElementById('downloadButton');
 
 let img = new Image();
@@ -19,13 +21,30 @@ imageInput.addEventListener('change', (event) => {
 });
 
 img.onload = () => {
-  canvas.width = img.width;
-  canvas.height = img.height;
+  // Handle resizing based on max width and height
+  const maxWidth = parseInt(maxWidthInput.value, 10) || img.width;
+  const maxHeight = parseInt(maxHeightInput.value, 10) || img.height;
+
+  const aspectRatio = img.width / img.height;
+
+  if (img.width > maxWidth) {
+    canvas.width = maxWidth;
+    canvas.height = maxWidth / aspectRatio;
+  } else if (img.height > maxHeight) {
+    canvas.height = maxHeight;
+    canvas.width = maxHeight * aspectRatio;
+  } else {
+    canvas.width = img.width;
+    canvas.height = img.height;
+  }
+
   drawPixelatedImage();
 };
 
 pixelSizeInput.addEventListener('input', drawPixelatedImage);
 greyscaleInput.addEventListener('change', drawPixelatedImage);
+maxWidthInput.addEventListener('input', drawPixelatedImage);
+maxHeightInput.addEventListener('input', drawPixelatedImage);
 
 function drawPixelatedImage() {
   const pixelSize = parseInt(pixelSizeInput.value, 10);
@@ -33,8 +52,8 @@ function drawPixelatedImage() {
   const tempCanvas = document.createElement('canvas');
   const tempCtx = tempCanvas.getContext('2d');
 
-  tempCanvas.width = img.width / pixelSize;
-  tempCanvas.height = img.height / pixelSize;
+  tempCanvas.width = canvas.width / pixelSize;
+  tempCanvas.height = canvas.height / pixelSize;
 
   // Draw a smaller version of the image
   tempCtx.drawImage(img, 0, 0, tempCanvas.width, tempCanvas.height);
