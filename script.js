@@ -13,11 +13,17 @@ let img = new Image();
 
 // Predefined color palettes
 const colorPalettes = {
-  gameboy: ['#0F380F', '#306230', '#8BAC0F', '#9BBC0F'],
-  atari2600: ['#000000', '#FFFFFF', '#F01800', '#F0CC00', '#0018F0', '#78F0CC'],
-  nes: ['#7C7C7C', '#0000FC', '#940084', '#F80000', '#F8B800', '#00FC00', '#3CBCFC', '#FFFFFF'],
-  commodore64: ['#000000', '#FFFFFF', '#68372B', '#70A4B2', '#6F3D86', '#588D43', '#352879', '#B8C76F']
-};
+    gameboy: ['#0F380F', '#306230', '#8BAC0F', '#9BBC0F'],
+    atari2600: ['#000000', '#FFFFFF', '#F01800', '#F0CC00', '#0018F0', '#78F0CC'],
+    nes: ['#7C7C7C', '#0000FC', '#940084', '#F80000', '#F8B800', '#00FC00', '#3CBCFC', '#FFFFFF'],
+    commodore64: ['#000000', '#FFFFFF', '#68372B', '#70A4B2', '#6F3D86', '#588D43', '#352879', '#B8C76F'],
+    bbcmicro: ['#000000', '#FFFFFF', '#FF0000', '#00FF00', '#FFFF00', '#0000FF', '#FF00FF', '#00FFFF'],
+    sinclairql: ['#000000', '#A1A1A1', '#A6CEE3', '#1F78B4', '#B2DF8A', '#33A02C', '#FB9A99', '#E31A1C'],
+    ti994a: ['#000000', '#FFFFFF', '#FF6600', '#FFAA00', '#AA5500', '#550000', '#FFFFAA', '#AAFFFF'],
+    vic20: ['#000000', '#FFFFFF', '#FF0000', '#A9F5A9', '#0000FF', '#FF00FF', '#FFFF00', '#00FFFF'],
+    zxspectrum: ['#000000', '#0000D7', '#D70000', '#D700D7', '#00D700', '#00D7D7', '#D7D700', '#D7D7D7']
+  };
+  
 
 imageInput.addEventListener('change', (event) => {
   const file = event.target.files[0];
